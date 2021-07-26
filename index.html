@@ -60,7 +60,7 @@ webix.ui({
         { id:"booktitle",   header:"Book title",    width:250},
         { id:"bookcover",   header:"bookcover",    width:200},
         { id:"price",   header:"Price(in dollars)",    width:150},
-        { id:"author",     header:"author(name,email,website)", width:500,template:show_places},
+        { id:"author",     header:"author(name,email,website)", width:500,template:show_authors},
         { id:"publisheddate",   header:"Published Date",    width:200},
         { template:"<input class='delbtn' type='button' value='Delete'>", width:100 },
         { template:"<input class='editbtn' type='button' value='Edit'>", width:100 }],        
@@ -84,7 +84,7 @@ webix.ui({
 ],
 	editable:true
 });
-function show_places(obj, common, value, colId, index) {
+function show_authors(obj, common, value, colId, index) {
    if(obj.author) {
    const keys = Object.keys(obj.author);
    console.log(obj.author)
