@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>internship task</title>
+	<script src="http://cdn.webix.com/edge/webix.js" type="text/javascript"></script>  
+    <link rel="stylesheet" href="http://cdn.webix.com/edge/webix.css" type="text/css">
+</head>
+<body>
+	<h1>Internship Task</h1>
+	<!-- <button onclick="newrow();">Create New row</button> -->
+	<script type="text/javascript">
+var grid_data = [
+  { id:1, booktitle:"Eloquent JavaScript, Third Edition",bookcover:"hardcopy", publisheddate:"05-10-1994", price:"$5",author:{
+  	name:"Marijn Haverbeke",email:"abcuacbac@xyz.com",site:"http://eloquentjavascript.net/"
+  }},
+  { id:2, booktitle:"Practical Modern JavaScript",bookcover:"softcopy", publisheddate:"10-11-1999", price:"$4",author:{
+  	name:"Nicolás Bevacqua",email:"iaxbnixno@xyz.com",site:"https://github.com/mjavascript/practical-modern-javascript"
+  }},
+  { id:3, booktitle:"Understanding ECMAScript 6",bookcover:"hardcopy", publisheddate:"15-12-2005", price:"$3.2",author:{
+  	name:"xyz",email:"aixnxnox@xyz.com",site:"https://leanpub.com/understandinges6/read"
+  }},
+  { id:4, booktitle:"Speaking JavaScript",bookcover:"softcopy", publisheddate:"25-08-2015", price:"$10",author:{
+  	name:"Axel Rauschmayer",email:"aixjanxnxo@xyz.com",site:"http://speakingjs.com/"
+  }},
+  { id:5, booktitle:"Learning JavaScript Design Patterns",bookcover:"softcopy", publisheddate:"02-02-2008", price:"$2",author:{
+  	name:"Addy Osmani",email:"abxiaxb ix@xyz.com",site:"http://www.addyosmani.com/resources/essentialjsdesignpatterns/book/"
+  }},
+  { id:6, booktitle:"You Don't Know JS Yet",bookcover:"hardcopy", publisheddate:"06-5-2002", price:"$7.3",author:{
+  	name:"Kyle Simpson",email:"xyz@xyz.com",site:"https://github.com/getify/You-Dont-Know-JS/tree/2nd-ed/get-started"
+  }}
+];
+
+webix.ui({
+
+ rows:[
+    { 
+      width:1000,
+      cols:[{
+        view:"button", 
+        width:1000,
+        label:"Add Row",
+        click:function(){
+          var data = {booktitle: "Newrowname", publisheddate: "01-01-2018", price: "$1",bookcover:"softcopy",author:{name:"somone",email:"abc@gmail.com",site:"samplesite"}}
+          $$('table').editStop();
+          var id = $$('table').add(data,0);
+          $$('table').editRow(id)
+        }
+      }]
+    },
+
+{
+    view:"datatable",
+    id:"table",
+    editable:true,
+    autoConfig:true,
+    resizeColumn: true,
+    rowHeight:80,
+    rowLineHeight:25,
+    columns:[
+        { id:"booktitle",   header:"Book title",    width:250},
+        { id:"bookcover",   header:"bookcover",    width:200},
+        { id:"price",   header:"Price(in dollars)",    width:150},
+        { id:"author",     header:"author(name,email,website)", width:500,template:show_places},
+        { id:"publisheddate",   header:"Published Date",    width:200},
+        { template:"<input class='delbtn' type='button' value='Delete'>", width:100 },
+        { template:"<input class='editbtn' type='button' value='Edit'>", width:100 }],        
+      
+    // a click behavior for the cell with a button styled with 'delbtn' class
+    onClick:{ 
+        "delbtn":function(e, id, trg){
+            // webix.message("Delete row: "+id); 
+            this.remove(id);
+            return false; // here it blocks the default behavior
+        },
+        "editbtn":function(e, id ,trg){
+        	$$('table').editRow(id);
+        	webix.message("Edit row: "+id); 
+
+        }
+    },
+
+    data:grid_data
+},
+],
+	editable:true
+});
+function show_places(obj, common, value, colId, index) {
+   if(obj.author) {
+   const keys = Object.keys(obj.author);
+   console.log(obj.author)
+   var e_item = "";
+	keys.forEach((key, index) => {
+	    // console.log(`${key}: ${courses[key]}`);
+	    e_item+=obj.author[key]+"<br/>"
+	});
+   return e_item;
+  }}
+	</script>
+	
+	<div id="paging1"></div>
+</body>
+</html>

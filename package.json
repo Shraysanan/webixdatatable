@@ -1,0 +1,14 @@
+{
+  "name": "internship-task",
+  "version": "1.0.0",
+  "description": "internship task by shray",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shray sanan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
