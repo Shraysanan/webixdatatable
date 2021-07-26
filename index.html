@@ -7,7 +7,7 @@
 </head>
 <body>
 	<h1>Internship Task</h1>
-	<!-- <button onclick="newrow();">Create New row</button> -->
+	
 	<script type="text/javascript">
 var grid_data = [
   { id:1, booktitle:"Eloquent JavaScript, Third Edition",bookcover:"hardcopy", publisheddate:"05-10-1994", price:"$5",author:{
@@ -65,12 +65,11 @@ webix.ui({
         { template:"<input class='delbtn' type='button' value='Delete'>", width:100 },
         { template:"<input class='editbtn' type='button' value='Edit'>", width:100 }],        
       
-    // a click behavior for the cell with a button styled with 'delbtn' class
+  
     onClick:{ 
         "delbtn":function(e, id, trg){
-            // webix.message("Delete row: "+id); 
             this.remove(id);
-            return false; // here it blocks the default behavior
+            return false; 
         },
         "editbtn":function(e, id ,trg){
         	$$('table').editRow(id);
@@ -90,7 +89,7 @@ function show_authors(obj, common, value, colId, index) {
    console.log(obj.author)
    var e_item = "";
 	keys.forEach((key, index) => {
-	    // console.log(`${key}: ${courses[key]}`);
+	   
 	    e_item+=obj.author[key]+"<br/>"
 	});
    return e_item;
